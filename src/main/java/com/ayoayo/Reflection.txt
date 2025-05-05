@@ -1,0 +1,50 @@
+Ayoayo Game Project Reflection
+Initial Reflection
+When I first approached this project, my initial understanding was to build a simple text-based version of the Ayoayo board game following the provided rules. My plan was to implement a straightforward array-based solution with the Player class and Ayoayo game logic class. I chose Java for its object-oriented programming features which aligned well with the project requirements.
+
+My initial approach was to:
+
+Create a basic array representation of the board
+Implement the core game mechanics one by one
+Add the special rules (extra turns and captures)
+Create a simple text-based interface for gameplay
+
+I thought the implementation would be relatively straightforward: represent the board as a linear array, implement seed distribution, and add special rules as conditions. I planned to develop features incrementally, testing each component before moving to the next.
+
+Final Reflection
+Significant Changes to my Plan
+The most significant change to my initial plan came when I realized my initial board representation didn't properly model the counter-clockwise movement specified in the rules. I had to completely refactor the board representation and seed distribution logic.
+
+Original board representation:
+[Player 1's pits (0-5)][Player 1's store (6)][Player 2's pits (7-12)][Player 2's store (13)]
+
+Refactored representation to correctly model counter-clockwise movement:
+Player 2:   [6][5][4][3][2][1]  (indices 12, 11, 10, 9, 8, 7 in array)
+Stores:     [P2]              [P1]  (indices 13, 6 in array)
+Player 1:   [1][2][3][4][5][6]  (indices 0, 1, 2, 3, 4, 5 in array)
+
+Challenges Encountered
+
+1. Board Representation Challenge: The most significant challenge was correctly modeling the counter-clockwise movement. My initial implementation didn't properly respect the game's circular nature. I overcame this by reconceptualizing the board layout and adjusting the indices accordingly.
+
+2. Special Rules Implementation: Implementing the capture rule was complex because it required determining the opposite pit. The formula for calculating this wasn't immediately obvious and required careful consideration of the board's layout.
+
+3. Turn Management: Properly handling the "take another turn" special rule in the interactive game proved challenging. I initially missed this in my implementation but later added tracking within the Ayoayo class to properly manage whose turn it was.
+
+4. Pit Indexing: I had to be careful about how I mapped the user's input (1-6) to array indices, especially for Player 2 where the pits are displayed in reverse order to maintain the counter-clockwise flow.
+
+Key Takeaways
+
+1. Importance of Visualization: Properly visualizing the game board was crucial for implementing the correct game logic. Text-based games still need a clear mental model of the game state.
+
+2. Incremental Testing: Testing each component incrementally was vital. When I refactored the board representation, I could quickly verify that my changes preserved the game rules.
+
+3. Rule Precision: The specific rules of Ayoayo - especially the counter-clockwise movement and special conditions required careful attention to detail. Small misinterpretations could lead to significant logic errors.
+
+4. Code Flexibility: Designing the code to be flexible from the beginning would have made the refactoring process smoother. My initial assumptions about the board layout proved incorrect, and I had to make substantial changes.
+
+5. User Experience Considerations: Even in a text-based game, user experience matters. I improved the interactive version to provide clearer feedback about whose turn it was.
+
+Conclusion
+This project demonstrated the importance of fully understanding the problem domain before implementation. While my initial approach seemed reasonable, I didn't fully grasp the minute aspects of the game board. The refactoring process taught me valuable lessons about designing for circularity in board games and handling complex rule interactions.
+The final implementation successfully captures the essence of Ayoayo, with proper counter-clockwise movement, correct implementation of special rules, and a clean text-based interface. The project showcases how object-oriented design principles can be applied to model traditional board games effectively.
